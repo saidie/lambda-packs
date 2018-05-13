@@ -32,10 +32,9 @@ gather_pack () {
 
     # cleaning
     rm -rf external pip pip-* wheel wheel-* setuptools setuptools-* grpc tensorboard tensorboard-* easy_install.py
-    find . -type d -name "test*" -exec rm -rf {} +
-    find . -type d -name 'example*' -exec rm -rf {} +
+    find . -type d -name "tests" -exec rm -rf {} +
     find . -type d -name 'include' -exec rm -rf {} +
-    find . -name "*.so" -o -name "*.so.*" | xargs strip
+    find . -name "*.so" -o -name "*.so.*" | grep -v PIL | xargs strip
     find . -name \*.pyc -delete
 
     echo "stripped size $(du -sh /home/lambdapack | cut -f1)"
